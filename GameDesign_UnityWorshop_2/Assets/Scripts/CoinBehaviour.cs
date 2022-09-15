@@ -4,44 +4,30 @@ using UnityEngine;
 
 public class CoinBehaviour : MonoBehaviour
 {
-    public float rotationSpeed;
-    //public float hoverSpeed;
+    public float degreesPerSecond = 15.0f;
+    public float amplitude = 0.5f;
+    public float frequency = 1f;
 
-    //[SerializeField] private float floatTimer;
-    //[SerializeField] private float floatRate;
-    //private bool goingUp;
+    // Position Storage Variables
+    Vector3 posOffset = new Vector3();
+    Vector3 tempPos = new Vector3();
 
     // Start is called before the first frame update
     void Start()
     {
-        rotationSpeed = 100.0f;
-        //hoverSpeed = -0.2f;
-        //floatTimer = 0.7f;
-        //floatRate = 1f;
-        //goingUp = false;
+        posOffset = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(rotationSpeed * Time.deltaTime, 0.0f, 0.0f);
+        // Spin object around Y-Axis
+        transform.Rotate(new Vector3(0f, Time.deltaTime * degreesPerSecond, 0f), Space.World);
 
-        //floatTimer += Time.deltaTime;
-        //Vector3 floatDir = new Vector3(hoverSpeed, 0.0f, 0.0f);
-        //transform.Translate(floatDir);
+        // Float up/down with a Sin()
+        tempPos = posOffset;
+        tempPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * frequency) * amplitude;
 
-        //if (goingUp && floatTimer >= floatRate)
-        //{
-        //    goingUp = false;
-        //    floatTimer = 0;
-        //    hoverSpeed = -hoverSpeed;
-        //}
-
-        //else if (!goingUp && floatTimer >= floatRate)
-        //{
-        //    goingUp = true;
-        //    floatTimer = 0;
-        //    hoverSpeed = -hoverSpeed;
-        //}
+        transform.position = tempPos;
     }
 }
