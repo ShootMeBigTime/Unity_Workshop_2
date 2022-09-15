@@ -35,9 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Pickup"))
         {
-            collision.gameObject.SetActive(false);
+            Destroy(collision.gameObject);
             count++;
         }
-        
     }
 }
