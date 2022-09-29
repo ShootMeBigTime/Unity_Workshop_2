@@ -11,7 +11,7 @@ public class PickUpScript : MonoBehaviour
         {
             Debug.Log("Test");
             other.GetComponent<Backpack>().items.Add(givenItem);
-            Destroy(gameObject);
+            this.gameObject.active = false;
         }
     }
 }
