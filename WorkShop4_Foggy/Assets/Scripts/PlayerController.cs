@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public int notes;
     private Rigidbody player;
     private float x;
     private float y;

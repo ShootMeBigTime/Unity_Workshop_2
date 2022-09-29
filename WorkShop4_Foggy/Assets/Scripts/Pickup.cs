@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            Debug.Log("Paper got picked up");
+            PlayerController temp = other.GetComponent<PlayerController>();
+            temp.notes =+ 1;
+            Destroy(this.gameObject);
+        }
     }
 }
